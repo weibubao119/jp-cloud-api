@@ -1,0 +1,73 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/jianpian?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:80
+#        namespace: b4d6d083-706f-481a-bb92-9e92bf88fcd0
+    sentinel:
+      transport:
+        dashboard: localhost:8080 #配置Sentinel dashboard地址
+        port: 8719
+
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 3
+        max-wait: -1
+        min-idle: 0
+    timeout: 2000
+
+feign:
+  sentinel:
+    enabled: true
+
+# Sa-Token配置
+sa-token:
+  # token 名称 (同时也是cookie名称)
+  token-name: satoken
+  # token 有效期，单位s 默认30天, -1代表永不过期
+  timeout: 2592000
+  # token 临时有效期 (指定时间内无操作就视为token过期) 单位: 秒
+  activity-timeout: -1
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: false
+  # token风格
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: false
+
+# 这个是 jwt 的配置
+jwt:
+  tokenHeader: Authorization
+  secret: mdx-secrt000001
+  expiration: 604800 #秒
+  prefix: Bearer
+
+wechat:
+  public: # 公众号
+    appId: wx1ac5e017ad8f17b6
+    appSecret: c3634be88e1829ac8e02eb0e18777903
+    callBackUrl: http://z5h68g.natappfree.cc/user/wechat/callBack
+    orderTemplateId: L3dx1ngwwwm_U8_INbzDD8828lTb7ieo_V748Pv4ThM
+
+
+

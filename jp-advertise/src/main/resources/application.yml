@@ -1,0 +1,23 @@
+server:
+  port: 9093
+
+spring:
+  application:
+    name: advertise-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:80
+        namespace: mdx
+        group: mdx
+
+wx:
+  pay:
+    appId: wx8397f8696b538317 #微信公众号或者小程序等的appId
+    mchId: 1473426802 #微信支付商户号 (传智播客的测试商户号)
+    mchKey: T6m9iK73b0kn9g5v426MKfHQH7X8rKwb #微信支付商户密钥
+    notifyUrl: http://z5h68g.natappfree.cc/pay/notify/order # 支付回调地址
+
+    # subAppId:服务商模式下的子商户公众账号ID
+    # subMchId: 服务商模式下的子商户号
+    # keyPath: p12证书的位置，可以指定绝对路径，也可以指定类路径（以classpath:开头）
