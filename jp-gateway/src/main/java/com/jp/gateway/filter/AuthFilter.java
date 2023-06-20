@@ -27,7 +27,7 @@ import java.nio.charset.StandardCharsets;
  */
 @Component
 @Slf4j
-public class MdxAuthFilter implements GlobalFilter, Ordered {
+public class AuthFilter implements GlobalFilter, Ordered {
 
     @Autowired
     private RedisManager redisManager;

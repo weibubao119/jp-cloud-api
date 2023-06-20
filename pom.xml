@@ -9,8 +9,6 @@
         <module>jp-video</module>
         <module>jp-common</module>
         <module>jp-gateway</module>
-        <module>jp-advertise</module>
-        <module>jp-configure</module>
     </modules>
 
     <parent>
@@ -90,12 +88,6 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-            <version>${spring-cloud-alibaba.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
             <version>${spring-cloud-alibaba.version}</version>
         </dependency>
 

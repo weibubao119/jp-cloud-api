@@ -4,10 +4,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.jp.user.handler.UserSentinelResourceHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author : xh
@@ -27,6 +24,11 @@ public class HelloWordController {
      */
     @GetMapping("getUserConfigTest")
     public String getUserConfigTest(){
+        return userId != null ? userId : "未获取到配置";
+    }
+
+    @PostMapping("getTest")
+    public String getTest(){
         return userId != null ? userId : "未获取到配置";
     }
 
