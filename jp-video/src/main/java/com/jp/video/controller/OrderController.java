@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date : Created in 2022/7/1 18:42
  */
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/video")
 public class OrderController {
 
     @Autowired
