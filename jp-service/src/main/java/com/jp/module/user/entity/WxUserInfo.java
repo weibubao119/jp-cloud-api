@@ -1,4 +1,4 @@
-package com.jp.user.entity;
+package com.jp.module.user.entity;
 
 import lombok.Data;
 

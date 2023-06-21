@@ -1,5 +1,6 @@
-package com.jp.user.service.impl;
+package com.jp.module.user.service.impl;
 
+import com.jp.module.user.service.UserService;
 import com.jp.user.dto.MdxUserDTO;
 import com.jp.common.exception.BizException;
 import com.jp.common.manager.RedisManager;
@@ -9,11 +10,9 @@ import com.jp.user.constant.UserConstant;
 import com.jp.user.entity.MdxUser;
 import com.jp.user.feign.OrderFeign;
 import com.jp.user.repository.MdxUserRepository;
-import com.jp.user.service.UserService;
 import com.jp.user.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

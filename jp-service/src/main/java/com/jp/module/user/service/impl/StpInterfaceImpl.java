@@ -1,4 +1,4 @@
-package com.jp.user.service.impl;
+package com.jp.module.user.service.impl;
 
 import cn.dev33.satoken.stp.StpInterface;
 import org.springframework.stereotype.Component;

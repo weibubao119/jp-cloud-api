@@ -1,4 +1,4 @@
-package com.jp.user.repository;
+package com.jp.module.user.repository;
 import com.jp.user.entity.MdxUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

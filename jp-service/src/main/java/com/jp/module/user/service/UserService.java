@@ -1,4 +1,4 @@
-package com.jp.user.service;
+package com.jp.module.user.service;
 
 import com.jp.user.dto.MdxUserDTO;
 import com.jp.user.vo.LoginVo;

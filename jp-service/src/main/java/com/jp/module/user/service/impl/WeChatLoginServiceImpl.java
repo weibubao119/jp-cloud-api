@@ -1,10 +1,10 @@
-package com.jp.user.service.impl;
+package com.jp.module.user.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Charsets;
 import com.jp.user.entity.WxUserInfo;
 import com.jp.user.config.WeChatProperties;
-import com.jp.user.service.WeChatLoginService;
+import com.jp.module.user.service.WeChatLoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;

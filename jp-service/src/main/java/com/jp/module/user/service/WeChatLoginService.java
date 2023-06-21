@@ -1,4 +1,4 @@
-package com.jp.user.service;
+package com.jp.module.user.service;
 
 import org.springframework.web.bind.annotation.RequestParam;
 

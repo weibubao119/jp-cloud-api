@@ -30,7 +30,7 @@
 
         <dependency>
             <groupId>com.jp</groupId>
-            <artifactId>jp-common</artifactId>
+            <artifactId>jp-service</artifactId>
             <version>1.0.0</version>
         </dependency>
 

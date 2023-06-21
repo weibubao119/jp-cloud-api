@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jp.module.user.dao.UsersDao">
+
+    <resultMap type="com.jp.module.user.entity.UsersEntity" id="usersMap">
+        <result property="id" column="id"/>
+        <result property="nickname" column="nickname"/>
+        <result property="pre" column="pre"/>
+        <result property="phone" column="phone"/>
+        <result property="password" column="password"/>
+        <result property="token" column="token"/>
+        <result property="invite" column="invite"/>
+        <result property="inviteNum" column="invite_num"/>
+        <result property="monthInviteNum" column="month_invite_num"/>
+        <result property="shareNum" column="share_num"/>
+        <result property="jpPoint" column="jp_point"/>
+        <result property="invitePoint" column="invite_point"/>
+        <result property="jpMoney" column="jp_money"/>
+        <result property="avatar" column="avatar"/>
+        <result property="sex" column="sex"/>
+        <result property="bindId" column="bind_id"/>
+        <result property="changed" column="changed"/>
+        <result property="created" column="created"/>
+        <result property="signNum" column="sign_num"/>
+        <result property="missionSignIn" column="mission_sign_in"/>
+        <result property="inviteMoney" column="invite_money"/>
+        <result property="userType" column="user_type"/>
+        <result property="channel" column="channel"/>
+        <result property="ip" column="ip"/>
+    </resultMap>
+
+</mapper>
