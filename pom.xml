@@ -8,6 +8,7 @@
         <module>jp-user</module>
         <module>jp-video</module>
         <module>jp-common</module>
+        <module>jp-service</module>
         <module>jp-gateway</module>
     </modules>
 
@@ -109,7 +110,12 @@
             <artifactId>druid</artifactId>
             <version>1.0.9</version>
         </dependency>
-
+        <!-- swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

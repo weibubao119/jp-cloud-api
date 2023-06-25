@@ -1,10 +1,8 @@
 package com.jp.module.user.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import java.io.Serializable;
-import com.jp.user.framework.common.utils.DateUtils;
 import java.math.BigDecimal;
 
 /**

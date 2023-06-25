@@ -1,4 +1,4 @@
-package com.jp.user.constant;
+package com.jp.common.constant;
 
 /**
  * @author : xh

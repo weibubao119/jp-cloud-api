@@ -1,10 +1,12 @@
 package com.jp.user.controller;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.jp.user.dto.MdxUserDTO;
+import com.jp.module.user.dto.MdxUserDTO;
 import com.jp.common.base.CommonResponse;
-import com.jp.user.service.UserService;
-import com.jp.user.vo.LoginVo;
+import com.jp.module.user.service.UserService;
+import com.jp.module.user.vo.LoginVo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/user")
+@Api(value = "用户操作")
 public class UserController {
 
     @Autowired
@@ -27,6 +30,7 @@ public class UserController {
      * @return
      */
     @PostMapping("login")
+    @ApiOperation(value = "登陆")
     public CommonResponse<LoginVo> login(@RequestBody MdxUserDTO mdxUserDTO){
         return CommonResponse.success(userService.login(mdxUserDTO));
     }
@@ -39,6 +43,7 @@ public class UserController {
      * @return
      */
     @GetMapping("getOrderNo")
+    @ApiOperation(value = "获取订单")
     @SentinelResource(value = "getOrderNoResource",blockHandler = "",blockHandlerClass = UserController.class)
     public CommonResponse<String> getOrderNo(String userId, String tenantId, HttpServletRequest request){
         return CommonResponse.success(userService.getOrderNo(userId,tenantId,request));

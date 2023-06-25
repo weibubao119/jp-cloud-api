@@ -1,4 +1,4 @@
-package com.jp.user.handler;
+package com.jp.common.handler;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import org.springframework.stereotype.Component;

@@ -1,17 +1,17 @@
-package com.jp.user;
+package com.jp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.ComponentScan;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 
 /**
  * @author : xh
- * @date : Created in 2022/7/1 11:25
+ * &#064;date  : Created in 2022/7/1 11:25
  */
 @SpringBootApplication
 @EnableFeignClients
-@ComponentScan(basePackages = {"com.jp.*"})
+@EnableOpenApi
 public class JpUserApplication {
     public static void main(String[] args) {
         SpringApplication.run(JpUserApplication.class, args);

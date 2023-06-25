@@ -1,4 +1,4 @@
-package com.jp.user.handler;
+package com.jp.common.handler;
 
 import com.jp.common.exception.BizException;
 import com.jp.common.base.CommonResponse;

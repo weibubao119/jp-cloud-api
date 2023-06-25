@@ -1,16 +1,19 @@
 package com.jp.module.user.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.jp.module.user.dao.UserMapper;
+import com.jp.module.user.entity.UsersEntity;
 import com.jp.module.user.service.UserService;
-import com.jp.user.dto.MdxUserDTO;
+import com.jp.module.user.dto.MdxUserDTO;
 import com.jp.common.exception.BizException;
 import com.jp.common.manager.RedisManager;
 import com.jp.common.utils.JWTProvider;
 import com.jp.common.utils.StringUtils;
-import com.jp.user.constant.UserConstant;
-import com.jp.user.entity.MdxUser;
-import com.jp.user.feign.OrderFeign;
-import com.jp.user.repository.MdxUserRepository;
-import com.jp.user.vo.LoginVo;
+import com.jp.common.constant.UserConstant;
+import com.jp.module.user.entity.MdxUser;
+import com.jp.common.feign.order.OrderFeign;
+import com.jp.module.user.repository.MdxUserRepository;
+import com.jp.module.user.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date : Created in 2022/7/4 10:48
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, UsersEntity> implements UserService{
 
     @Autowired
     private OrderFeign orderFeign;
@@ -36,6 +39,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RedisManager redisManager;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Value("${jwt.prefix}")
     private String prefix;

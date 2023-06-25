@@ -1,6 +1,6 @@
-package com.jp.user.handler;
+package com.jp.common.handler;
 
-import com.jp.user.feign.OrderFeign;
+import com.jp.common.feign.order.OrderFeign;
 import org.springframework.stereotype.Component;
 
 /**
