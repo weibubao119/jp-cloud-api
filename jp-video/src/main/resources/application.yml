@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: video-service
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   cloud:
     nacos:
       discovery:
@@ -32,4 +35,10 @@ spring:
 #  sentinel:
 #    enabled: true
 
+
+jwt:
+  tokenHeader: Authorization
+  secret: mdx-secrt000001
+  expiration: 604800 #秒
+  prefix: Bearer
 
