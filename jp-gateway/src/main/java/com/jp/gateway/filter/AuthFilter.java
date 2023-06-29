@@ -29,10 +29,10 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class AuthFilter implements GlobalFilter, Ordered {
 
-    @Autowired
+    @Autowired(required = false)
     private RedisManager redisManager;
 
-    @Autowired
+    @Autowired(required = false)
     private JWTProvider jwtProvider;
 
     @Value("${jwt.tokenHeader}")
@@ -106,6 +106,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
      */
     protected Mono<Void> writeResponse(ServerHttpResponse response, Integer code, String msg) {
         JSONObject message = new JSONObject();
+        redisManager.del("");
         message.put("code", code);
         message.put("msg", msg);
         byte[] bits = message.toJSONString().getBytes(StandardCharsets.UTF_8);

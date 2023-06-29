@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/user")
-@Api(value = "用户操作")
+@Api(tags = {"用户"},value = "用户操作")
 public class UserController {
 
     @Autowired

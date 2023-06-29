@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: gateway-service
+  main:
+    web-application-type: reactive
+#    allow-bean-definition-overriding: true
   cloud:
     nacos:
       discovery:
@@ -44,4 +47,4 @@ jwt:
 
 # 不用登录就可以访问的接口
 allowed:
-  paths: /user/login,/video/lb,/user/getTest
+  paths: /user/login
