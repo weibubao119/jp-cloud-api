@@ -1,25 +1,25 @@
 package com.jp.module.user.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.jp.common.utils.MD5Util;
 import com.jp.module.user.dao.UserMapper;
+import com.jp.module.user.dto.UserLoginDTO;
 import com.jp.module.user.entity.UsersEntity;
 import com.jp.module.user.service.UserService;
-import com.jp.module.user.dto.MdxUserDTO;
 import com.jp.common.exception.BizException;
 import com.jp.common.manager.RedisManager;
 import com.jp.common.utils.JWTProvider;
-import com.jp.common.utils.StringUtils;
 import com.jp.common.constant.UserConstant;
-import com.jp.module.user.entity.MdxUser;
 import com.jp.common.feign.order.OrderFeign;
-import com.jp.module.user.repository.MdxUserRepository;
-import com.jp.module.user.vo.LoginVo;
+import com.jp.module.user.vo.UserInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author : xh
@@ -32,7 +32,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UsersEntity> implem
     private OrderFeign orderFeign;
 
     @Autowired
-    private MdxUserRepository userRepository;
+    private MD5Util md5Util;
 
     @Autowired
     private JWTProvider jwtProvider;
@@ -48,32 +48,34 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UsersEntity> implem
 
     /**
      * 登录
-     * @param mdxUserDTO
+     * @param userLoginDTO
      * @return
      */
     @Override
-    public LoginVo login(MdxUserDTO mdxUserDTO) {
-        MdxUser mdxUser = userRepository.findByUserName(mdxUserDTO.getUserName());
-        if (mdxUser == null){
-            throw new BizException("用户不存在");
+    public UserInfoVO login(UserLoginDTO userLoginDTO) {
+        //校验密码
+
+        //匹配用户
+        Map<String, Object> query = new HashMap<>();
+        query.put("pre",userLoginDTO.getPre());
+        query.put("phone",userLoginDTO.getPhone());
+        UserInfoVO userInfo = userMapper.getUserInfo(query);
+        if(userInfo == null){
+            throw new BizException(0,"用户不存在");
+        }
+        // 判断用户名密码是否正确
+        if (md5Util.getMD5(userLoginDTO.getPassword()).equals(userInfo.getPassword())){
+            throw new BizException(0,"手机号或密码错误");
         }
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        // 判断用户名密码是否正确
-        if (StringUtils.isEmpty(mdxUser.getUserName()) ||
-                ! encoder.matches(mdxUserDTO.getPassword(), mdxUser.getPassword())){
-            throw new BizException("用户名或者密码错误");
-        }
-        // 生成token
-        String token = jwtProvider.generateToken(mdxUser.getUserName());
+        // 生成toke
+        String token = jwtProvider.generateToken(userInfo.getPhone());
 
         // 将token存入redis
-        redisManager.set(UserConstant.USER_TOKEN_KEY_REDIS + mdxUser.getUserName(),token,604800);
+        redisManager.set(UserConstant.USER_TOKEN_KEY_REDIS + userInfo.getPhone(),token,604800);
 
-        return LoginVo.builder()
-                .userId(mdxUser.getUserId().toString())
-                .userName(mdxUser.getUserName())
-                .token(prefix + " " + token).build();
+        userInfo.setToken(token);
+        return userInfo;
     }
 
     public static void main(String[] args) {

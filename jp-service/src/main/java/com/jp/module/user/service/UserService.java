@@ -1,9 +1,9 @@
 package com.jp.module.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jp.module.user.dto.MdxUserDTO;
+import com.jp.module.user.dto.UserLoginDTO;
 import com.jp.module.user.entity.UsersEntity;
-import com.jp.module.user.vo.LoginVo;
+import com.jp.module.user.vo.UserInfoVO;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,5 +18,5 @@ public interface UserService extends IService<UsersEntity> {
     /**
      * 登录
      */
-    LoginVo login(MdxUserDTO mdxUserDTO);
+    UserInfoVO login(UserLoginDTO userLoginDTO);
 }

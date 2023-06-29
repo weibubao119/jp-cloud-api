@@ -12,11 +12,13 @@
         <result property="token" column="token"/>
         <result property="invite" column="invite"/>
         <result property="inviteNum" column="invite_num"/>
+        <result property="inviteNumSecond" column="invite_num_second"/>
         <result property="monthInviteNum" column="month_invite_num"/>
         <result property="shareNum" column="share_num"/>
         <result property="jpPoint" column="jp_point"/>
         <result property="invitePoint" column="invite_point"/>
         <result property="jpMoney" column="jp_money"/>
+        <result property="withdrawNum" column="withdraw_num"/>
         <result property="avatar" column="avatar"/>
         <result property="sex" column="sex"/>
         <result property="bindId" column="bind_id"/>
@@ -28,6 +30,21 @@
         <result property="userType" column="user_type"/>
         <result property="channel" column="channel"/>
         <result property="ip" column="ip"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="mail" column="mail"/>
+        <result property="client" column="client"/>
     </resultMap>
+    <select id="getUserInfo" resultType="com.jp.module.user.vo.UserInfoVO">
+        select * from users
+        <where>
+            is_delete = 0
+            <if test="pre != null and pre != ''">
+                and pre = #{pre}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+        </where>
+    </select>
 
 </mapper>

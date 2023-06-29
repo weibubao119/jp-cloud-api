@@ -1,6 +1,7 @@
 server:
   port: 9090
-
+  servlet:
+    context-path: /jpUser
 spring:
   application:
     name: user-service
@@ -66,3 +67,25 @@ jwt:
   secret: mdx-secrt000001
   expiration: 604800 #秒
   prefix: Bearer
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.sie.modules.*.entity
+  global-config:
+    #数据库相关配置
+    db-config:
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: NOT_NULL
+      #驼峰下划线转换
+      column-underline: true
+      #db-type: mysql
+    banner: false
+  #原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,10 +1,8 @@
 package com.jp.user.controller;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.jp.module.user.dto.MdxUserDTO;
 import com.jp.common.base.CommonResponse;
 import com.jp.module.user.service.UserService;
-import com.jp.module.user.vo.LoginVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +21,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    /**
-     * 登录
-     * @param mdxUserDTO
-     * @return
-     */
-    @PostMapping("login")
-    @ApiOperation(value = "登陆")
-    public CommonResponse<LoginVo> login(@RequestBody MdxUserDTO mdxUserDTO){
-        return CommonResponse.success(userService.login(mdxUserDTO));
-    }
-
     /**
      * 测试openFeign获取订单服务接口
      * @param userId
