@@ -21,7 +21,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:80
+        server-addr: localhost:8848
 #        namespace: b4d6d083-706f-481a-bb92-9e92bf88fcd0
 #    sentinel:
 #      transport:

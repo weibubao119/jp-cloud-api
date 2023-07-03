@@ -3,7 +3,7 @@
 
 <mapper namespace="com.jp.module.user.dao.UserMapper">
 
-    <resultMap type="com.jp.module.user.entity.UsersEntity" id="usersMap">
+    <resultMap type="com.jp.module.user.entity.Users" id="usersMap">
         <result property="id" column="id"/>
         <result property="nickname" column="nickname"/>
         <result property="pre" column="pre"/>
@@ -34,7 +34,7 @@
         <result property="mail" column="mail"/>
         <result property="client" column="client"/>
     </resultMap>
-    <select id="getUserInfo" resultType="com.jp.module.user.vo.UserInfoVO">
+    <select id="getUserInfo" resultType="com.jp.module.user.entity.Users">
         select * from users
         <where>
             is_delete = 0

@@ -29,10 +29,10 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class AuthFilter implements GlobalFilter, Ordered {
 
-    @Autowired(required = false)
+    @Autowired
     private RedisManager redisManager;
 
-    @Autowired(required = false)
+    @Autowired
     private JWTProvider jwtProvider;
 
     @Value("${jwt.tokenHeader}")

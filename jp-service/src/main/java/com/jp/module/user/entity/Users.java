@@ -4,6 +4,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import com.baomidou.mybatisplus.annotation.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
+
 /**
  * 用户模块
  *
@@ -11,10 +15,10 @@ import com.baomidou.mybatisplus.annotation.*;
  * @since 1.0.0 2023-06-21
  */
 @Data
-@EqualsAndHashCode(callSuper=false)
 @TableName("users")
-public class UsersEntity {
-	@TableId
+@Entity
+public class Users implements Serializable {
+	@Id
 	private Integer id;
 
 	/**

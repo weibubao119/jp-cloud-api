@@ -4,8 +4,8 @@ server:
 spring:
   application:
     name: gateway-service
-  main:
-    web-application-type: reactive
+#  main:
+#    web-application-type: reactive
 #    allow-bean-definition-overriding: true
   cloud:
     nacos:

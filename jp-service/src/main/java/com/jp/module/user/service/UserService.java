@@ -2,7 +2,7 @@ package com.jp.module.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.jp.module.user.dto.UserLoginDTO;
-import com.jp.module.user.entity.UsersEntity;
+import com.jp.module.user.entity.Users;
 import com.jp.module.user.vo.UserInfoVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author : xh
  * @date : Created in 2022/7/4 10:48
  */
-public interface UserService extends IService<UsersEntity> {
+public interface UserService extends IService<Users> {
 
     String getOrderNo(String userId, String tenantId , HttpServletRequest request);
 
