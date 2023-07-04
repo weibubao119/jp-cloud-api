@@ -1,9 +1,11 @@
 package com.jp.module.user.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * 用户会员
@@ -12,10 +14,10 @@ import lombok.EqualsAndHashCode;
  * @since 1.0.0 2023-06-21
  */
 @Data
-@EqualsAndHashCode(callSuper=false)
 @TableName("users_vip")
-public class UsersVip {
-	@TableId
+@Entity
+public class UsersVip implements Serializable {
+	@Id
 	private Integer id;
 
 	/**

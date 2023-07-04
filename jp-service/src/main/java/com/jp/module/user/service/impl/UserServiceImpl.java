@@ -7,7 +7,9 @@ import com.jp.module.user.dao.UserMapper;
 import com.jp.module.user.dto.UserLoginDTO;
 import com.jp.module.user.entity.Users;
 import com.jp.module.user.entity.UsersAvatar;
+import com.jp.module.user.entity.UsersVip;
 import com.jp.module.user.repository.UserAvatarRepository;
+import com.jp.module.user.repository.UserVipRepository;
 import com.jp.module.user.service.UserService;
 import com.jp.common.exception.BizException;
 import com.jp.common.manager.RedisManager;
@@ -50,6 +52,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
     @Autowired
     private UserAvatarRepository userAvatarRepository;
 
+    @Autowired
+    private UserVipRepository userVipRepository;
+
     @Value("${jwt.prefix}")
     private String prefix;
 
@@ -76,11 +81,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
             throw new BizException(0,"手机号或密码错误");
         }
 
-        //处理头像和会员信息
-        if(users.getAvatar() != null && !users.getAvatar().equals("")){
-            UsersAvatar avatar = userAvatarRepository.getUsersAvatarById(Integer.valueOf(users.getAvatar()));
-            users.setAvatar(DomainConstant.API_IMAGE_DOMIAN + avatar.getPath());
-        }
 
         // 生成toke
         String token = jwtProvider.generateToken(users.getPhone());
@@ -89,8 +89,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         redisManager.set(UserConstant.USER_TOKEN_KEY_REDIS + users.getPhone(),token,604800);
 
         users.setToken(token);
+
         UserInfoVO userInfo = new UserInfoVO();
         BeanUtils.copyProperties(users,userInfo);
+
+        //处理头像和会员信息
+        if(userInfo.getAvatar() != null && !userInfo.getAvatar().equals("")){
+            UsersAvatar avatar = userAvatarRepository.getUsersAvatarById(Integer.valueOf(userInfo.getAvatar()));
+            userInfo.setAvatar(DomainConstant.API_IMAGE_DOMIAN + avatar.getPath());
+        }
+        UsersVip usersVip = userVipRepository.getUsersVipByUid(users.getUserType());
+        if(usersVip != null){
+            userInfo.setVipEnd(usersVip.getEnd());
+        }
+        userInfo.setMissionSignIn(users.getMissionSignIn() == 1);
+        switch (users.getSex()){
+            case 1:
+                userInfo.setSex("男");
+                break;
+            case 2:
+                userInfo.setSex("女");
+                break;
+            default:
+                userInfo.setSex("未知");
+        }
         return userInfo;
     }
 

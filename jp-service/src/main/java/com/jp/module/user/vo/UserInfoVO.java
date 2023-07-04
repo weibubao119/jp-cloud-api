@@ -35,11 +35,11 @@ public class UserInfoVO{
 	@Schema(description = "头像")
 	private String avatar;
 
-	@Schema(description = "1男2女")
-	private Integer sex;
+	@Schema(description = "性别")
+	private String sex;
 
-	@Schema(description = "1.已签到 0.否")
-	private Integer missionSignIn;
+	@Schema(description = "true.已签到 false.否")
+	private Boolean missionSignIn;
 
 	@Schema(description = "会员到期时间")
 	private String vipEnd;
