@@ -2,6 +2,7 @@ package com.jp.module.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.jp.module.user.dto.UserLoginDTO;
+import com.jp.module.user.dto.UserRegisterDTO;
 import com.jp.module.user.entity.Users;
 import com.jp.module.user.vo.UserInfoVO;
 
@@ -19,4 +20,9 @@ public interface UserService extends IService<Users> {
      * 登录
      */
     UserInfoVO login(UserLoginDTO userLoginDTO);
+
+    /**
+     * 注册
+     */
+    UserInfoVO register(UserRegisterDTO userRegisterDTO);
 }
