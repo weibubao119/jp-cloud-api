@@ -1,0 +1,14 @@
+spring:
+  application:
+    name:configure-service
+  profiles:
+    active: test
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:80 #??nginx???? nacos?????
+      #        cluster-name: SH #????
+      #        namespace: d10cceb4-4253-4d81-a144-9c4b8f9343c4
+      config:
+        file-extension: yaml #????????
+        server-addr: localhost:80  #nacos?????

@@ -88,7 +88,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
             throw new BizException(500,"手机号或密码错误");
         }
 
-
         // 生成toke
         String token = jwtProvider.generateToken(users.getPhone());
 
@@ -101,7 +100,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         BeanUtils.copyProperties(users,userInfo);
 
         //处理头像和会员信息
-        if(userInfo.getAvatar() != null && !userInfo.getAvatar().equals("")){
+        if(userInfo.getAvatar() != null && !"".equals(userInfo.getAvatar())){
             UsersAvatar avatar = userAvatarRepository.getUsersAvatarById(Integer.valueOf(userInfo.getAvatar()));
             userInfo.setAvatar(DomainConstant.API_IMAGE_DOMIAN + avatar.getPath());
         }
